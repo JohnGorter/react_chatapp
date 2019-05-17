@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+
+    <script  type="text/babel" src="./appbar.js"></script>
+    <script  type="text/babel" src="./main.js"></script>
+    <script  type="text/babel" src="./searchbar.js"></script>
+    <script  type="text/babel" src="./listview.js"></script>
+    <script  type="text/babel" src="./Chat.js"></script>
+</head>
+<body>
+    <style>
+        html, body { margin:0;box-sizing: border-box;overscroll-behavior: none;overflow-x:hidden;}
+        .listView {
+            
+            height:100vh;
+            background-color:green;
+            overflow-y:auto;
+        }
+        .listitem { height:100px;display:flex;justify-content: flex-start;padding:20px;}
+        .appBar {
+            box-shadow: 5px 5px 5px #ccc;
+            position: fixed;
+            top:0px;
+            width:100vw;
+            transition: height 0.3s;
+            height:10vh;
+            font-size:20px;
+            font-weight:bold;
+            display:flex;
+            padding:20px;
+            align-items:center;
+            justify-content:center;
+            color: #1d0000;
+            background: linear-gradient(#018001, white);
+            }
+        .big { height:10vh;}
+
+        .startChat { padding:10px;position:fixed; height:20px; bottom:0px; right:0px; width:50vw;display:flex;justify-content: center; background-color:yellow; }
+        .chatContainer { padding:10px;position:fixed; height:300px; bottom:0px; right:0px; width:50vw; background-color:yellow; }
+        .chatList { display:flex;flex-direction:column;}
+        .chatToolbar { display:flex;justify-content: flex-end;}
+        .chatInput { position:fixed; padding:10px; bottom:0px; right:0px; width:250;background-color:red; }
+    </style>
+    
+    <div id="main"></div>
+<!-- 
+    <script>
+        setTimeout(() => {
+        let observer = new IntersectionObserver((entries) => {
+            console.log("tadaa", entries);
+            let appBar = document.querySelector('.appBar');
+            entries[0].isIntersecting ? appBar.classList.add("big") : appBar.classList.remove("big");
+        });
+        observer.observe(document.querySelector('.listitem:nth-child(1)'));
+    }, 1000); 
+    </script> -->
+    
+    <script type="text/babel">
+        ReactDOM.render(<Main />, document.querySelector("#main"))
+    </script>
+    
+</body>
+</html>
