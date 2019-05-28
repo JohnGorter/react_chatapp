@@ -21,13 +21,19 @@ class ListView extends React.Component {
     render(){ 
         console.log("-ListView render-");
         return (
-            <div className="listView"> { this.props.items.map((item) => <div key={item.id} className="listitem">
-                <div style={{padding:20}}><img src={item.plaat} /></div>
-                <div> 
-                    <div>{item.naam}</div>
-                    <div>{item.model}</div>
-                </div>
-            </div>)} </div>
+            <AppContext.Consumer>
+                {
+                    (context) => (
+                        <div className="listView"> { context.filteredlist.map((item) => <div key={item.id} className="listitem">
+                    <div style={{padding:20}}><img src={item.plaat} /></div>
+                    <div> 
+                        <div>{item.naam}</div>
+                        <div>{item.model}</div>
+                    </div>
+                    </div>)} </div>)
+                }
+            
+            </AppContext.Consumer>
         );
     }
 }

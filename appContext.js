@@ -1,0 +1,1 @@
+let AppContext = React.createContext(); 

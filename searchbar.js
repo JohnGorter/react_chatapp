@@ -1,1 +1,7 @@
-const SearchBar = ({onChange}) => <div style={{marginTop:'15vh'}} >Search <input type="search" onChange={onChange} /> <button>Go</button> </div>
+const SearchBar = ({onChange}) => (
+    <AppContext.Consumer>
+        {(context) => (
+            <div style={{marginTop:'15vh'}} >Search <input type="search" onChange={context.filter} /> <button>Go</button> </div>
+        )}
+    </AppContext.Consumer>
+);

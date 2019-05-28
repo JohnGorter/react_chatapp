@@ -17,9 +17,17 @@ let data = [
     {id:"15",naam:"bmw", model:"onzin", plaat:"http://john.jpg"} ,
 ];
 
-class Main extends React.Component {
-    
+class MainScreen extends React.Component {
+  render(){
+    return (
+    <ReactRouterDOM.Switch>
+        <ReactRouterDOM.Route path='/main' component={Main}></ReactRouterDOM.Route>
+        <ReactRouterDOM.Route path='/' component={Login}></ReactRouterDOM.Route>
+    </ReactRouterDOM.Switch>);
+  }
+}
 
+class Main extends React.Component {
     /* 
     (Class Constructor)	
 componentWillMount	Invoked once before initial rendering (setting state does not trigger re-render)
@@ -33,6 +41,9 @@ componentDidMount
             showChat : false,
             motoren : data,
             filteredlist : data,
+            filter:(event) => {
+                this.setState({filteredlist: this.state.motoren.filter((m) => event.target.value == "" ||  m.naam.indexOf(event.target.value) > -1)})
+             }
         };
     }
 
@@ -41,24 +52,26 @@ componentDidMount
        this.setState({showChat: true})
     }
 
-    filter = (event) => {
-       this.setState({filteredlist: this.state.motoren.filter((m) => event.target.value == "" ||  m.naam.indexOf(event.target.value) > -1)})
-    }
+    // filter = (event) => {
+    //    this.setState({filteredlist: this.state.motoren.filter((m) => event.target.value == "" ||  m.naam.indexOf(event.target.value) > -1)})
+    // }
 
     closeChat = () => this.setState({showChat:false})
 
     render() {
         console.log("render");
-        let child = this.state.filteredlist.length > 0  ? <ListView items={this.state.filteredlist}></ListView> : <div>-no items-</div>
+        let child = this.state.filteredlist.length > 0  ? <ListView></ListView> : <div>-no items-</div>
         let chat = this.state.showChat ?  
             <Chat closeChat={this.closeChat}></Chat> : 
             <div className="startChat" onClick={this.setShowChat}>Start a chat with a real person</div>
         return (         
         <div>
-            <AppBar title="Motoren"></AppBar>
-            <SearchBar onChange={this.filter}></SearchBar>
-            {child}
-            {chat}
+            <AppContext.Provider value={this.state}>
+                <AppBar title="Motoren"></AppBar>
+                <SearchBar></SearchBar>
+                {child}
+                {chat}
+            </AppContext.Provider>
         </div>
     );}
 }

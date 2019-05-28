@@ -9,11 +9,16 @@
     <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
     <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
 
+    <script src="https://unpkg.com/react-router-dom@5.0.0/umd/react-router-dom.js"></script>
+
+
     <script  type="text/babel" src="./appbar.js"></script>
+    <script  type="text/babel" src="./appContext.js"></script>
     <script  type="text/babel" src="./main.js"></script>
     <script  type="text/babel" src="./searchbar.js"></script>
     <script  type="text/babel" src="./listview.js"></script>
     <script  type="text/babel" src="./Chat.js"></script>
+    <script  type="text/babel" src="./Login.js"></script>
 </head>
 <body>
     <style>
@@ -48,6 +53,20 @@
         .chatList { display:flex;flex-direction:column;}
         .chatToolbar { display:flex;justify-content: flex-end;}
         .chatInput { position:fixed; padding:10px; bottom:0px; right:0px; width:250;background-color:red; }
+
+
+        .loginContainer {
+            height: 100vh;
+            display: flex;
+            background-color: #ccc;
+            align-items: center; justify-content: center;
+        }
+        .loginDialog {
+            box-shadow: 5px 5px 5px #aaa;
+            background-color: white;
+            padding:20px;
+            flex-direction: column; display:flex;align-items: center; justify-content: center;height:50vh;
+        }
     </style>
     
     <div id="main"></div>
@@ -64,7 +83,9 @@
     </script> -->
     
     <script type="text/babel">
-        ReactDOM.render(<Main />, document.querySelector("#main"))
+        ReactDOM.render(<ReactRouterDOM.BrowserRouter>
+                    <MainScreen/>
+                </ReactRouterDOM.BrowserRouter>, document.querySelector("#main"))
     </script>
     
 </body>
